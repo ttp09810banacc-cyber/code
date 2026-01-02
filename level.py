@@ -66,11 +66,16 @@ class Level():
                 if player.direction.x < 0:
                     player.rect.left = sprite.rect.right
                     player.on_left = True
-                    #self.current_x = player.rect_left
+                    self.current_x = player.rect.left
                 elif player.direction.x > 0:
                     player.rect.right = sprite.rect.left
                     player.on_right = True
-                    #self.current_x = player.rect_right
+                    self.current_x = player.rect.right
+        
+        if player.on_left and player.rect.left < self.current_x or player.direction.x >= 0:
+            player.on_left = False
+        elif player.on_right and player.rect.right > self.current_x or player.direction.x <= 0:
+            player.on_right = True
                     
     def vertical_movement(self):
         # va chạm dọc
